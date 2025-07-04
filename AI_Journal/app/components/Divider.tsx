@@ -1,12 +1,16 @@
 import React from 'react';
 import { View } from 'react-native';
 
-const Divider = () => (
+type DividerProps = {
+  mode?: 'horizontal' | 'vertical';
+};
+
+const Divider = ({ mode = 'horizontal' }: DividerProps) => (
   <View
     style={{
-      height: 1,
-      backgroundColor: '#e5e7eb', // Tailwind slate-200
-      width: 'auto',
+      height: mode === 'horizontal' ? 1 : 'auto',
+      width: mode === 'vertical' ? 1 : 'auto',
+      backgroundColor: '#e5e7eb',
     }}
   />
 );
