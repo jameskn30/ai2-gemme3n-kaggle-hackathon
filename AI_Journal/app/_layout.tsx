@@ -1,12 +1,16 @@
-import { Stack } from "expo-router";
-import "../global.css";
+import { Stack } from 'expo-router';
+import '../global.css';
+import { StatusBar } from 'expo-status-bar';
 //what is stack? https://docs.expo.dev/tutorial/add-navigation/#what-is-a-stack
 
 export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ title: "Home" }} />
-      <Stack.Screen name="about" options={{ title: "About" }} />
-    </Stack>
+    <>
+      <Stack>
+        <Stack.Screen name="index" options={{ title: 'Home' }} />
+        <Stack.Screen name="(screens)/about" options={{ title: 'Hello' }}/>
+      </Stack>
+      <StatusBar style="dark" />
+    </>
   );
 }
