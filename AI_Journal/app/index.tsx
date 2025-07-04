@@ -2,6 +2,7 @@ import { Text, View, StyleSheet, Alert, FlatList } from 'react-native';
 import FAB from './components/FAB';
 import CardView from './components/CardView';
 import { LinearGradient } from 'expo-linear-gradient';
+import Header from './components/Header';
 
 export default function Index() {
   return (
@@ -11,15 +12,17 @@ export default function Index() {
     >
       {/* Scrollable list view with long text */}
       <View style={{ flex: 1, width: '100%' }}>
+        <Header />
         <Text
           style={{
             fontWeight: 'bold',
             fontSize: 18,
             marginBottom: 10,
-            alignSelf: 'center',
+            marginLeft: 16,
+            alignSelf: 'flex-start',
           }}
         >
-          Very Long Scrollable Text
+          June
         </Text>
         <View style={{ flex: 1 }}>
           <FlatList
