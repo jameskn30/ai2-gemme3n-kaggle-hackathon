@@ -1,44 +1,25 @@
-import React, { useRef, useEffect } from 'react';
-import { Animated, ViewProps, Text, StyleSheet, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+  ViewProps,
+  Text,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+} from 'react-native';
+// Animation imports from react-native-reanimated
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+  withTiming,
+  interpolate,
+} from 'react-native-reanimated';
 import Divider from './Divider';
+import { Ionicons } from '@expo/vector-icons';
 
 type CardViewProps = ViewProps & {
   title: string;
   content: string;
-};
-
-const ThreeDots = () => {
-  return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 8 }}>
-      <View
-        style={{
-          width: 4,
-          height: 4,
-          borderRadius: 2,
-          backgroundColor: '#888',
-          marginHorizontal: 1,
-        }}
-      />
-      <View
-        style={{
-          width: 4,
-          height: 4,
-          borderRadius: 2,
-          backgroundColor: '#888',
-          marginHorizontal: 1,
-        }}
-      />
-      <View
-        style={{
-          width: 4,
-          height: 4,
-          borderRadius: 2,
-          backgroundColor: '#888',
-          marginHorizontal: 1,
-        }}
-      />
-    </View>
-  );
 };
 
 const CardView: React.FC<CardViewProps> = ({
@@ -46,69 +27,99 @@ const CardView: React.FC<CardViewProps> = ({
   content,
   style,
   ...rest
-}) => {
-  const scaleAnim = useRef(new Animated.Value(0.8)).current;
-  const opacityAnim = useRef(new Animated.Value(0)).current;
+}: CardViewProps) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  // Animation shared values for controlling animations
+  const scaleAnim = useSharedValue(0.8); // Controls card scale animation
+  const expandAnim = useSharedValue(0); // Controls content expansion animation
 
   useEffect(() => {
-    Animated.parallel([
-      Animated.spring(scaleAnim, {
-        toValue: 1,
-        useNativeDriver: true,
-        friction: 7,
-        tension: 60,
-      }),
-      Animated.timing(opacityAnim, {
-        toValue: 1,
-        duration: 250,
-        useNativeDriver: true,
-      }),
-    ]).start();
-  }, [scaleAnim, opacityAnim]);
+    // Initial animation when component mounts
+    scaleAnim.value = withSpring(1, {
+      damping: 7,
+      stiffness: 60,
+    });
+  }, []);
+
+  const handlePress = () => {
+    const newExpandedState = !isExpanded;
+    setIsExpanded(newExpandedState);
+
+    if (newExpandedState) {
+      // Use spring animation for expand (with bounce)
+      expandAnim.value = withSpring(1, {
+        damping: 7,
+        stiffness: 60,
+      });
+    } else {
+      // Use timing animation for collapse (no bounce) with faster duration
+      expandAnim.value = withTiming(0, {
+        duration: 150,
+      });
+    }
+  };
+
+  // Animated style for card scale
+  const animatedCardStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: scaleAnim.value }],
+    };
+  });
+
+  // Animated style for content expansion
+  const animatedContentStyle = useAnimatedStyle(() => {
+    return {
+      maxHeight: interpolate(expandAnim.value, [0, 1], [150, 1000]),
+      overflow: 'hidden',
+    };
+  });
 
   return (
-    <Animated.View
-      style={[
-        styles.card,
-        style,
-        {
-          transform: [{ scale: scaleAnim }],
-          opacity: opacityAnim,
-        },
-      ]}
-      {...rest}
-    >
-      <View>
-        <Text style={styles.title}>{title}</Text>
-        <Text
-          style={[styles.content, { maxHeight: 150 }]}
-          numberOfLines={8}
-          ellipsizeMode="tail"
-        >
-          {content}
-        </Text>
-      </View>
-      <Divider />
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginTop: 12,
-          paddingHorizontal: 8,
-        }}
+    <TouchableOpacity onPress={handlePress} activeOpacity={0.9}>
+      <Animated.View
+        style={[
+          styles.card,
+          style,
+          animatedCardStyle, // Apply animated card style
+        ]}
+        {...rest}
       >
-        <Text style={{ fontSize: 12, color: '#888' }}>
-          {new Date().toLocaleDateString()}
-        </Text>
-        <ThreeDots />
-      </View>
-    </Animated.View>
+        <View>
+          <Text style={styles.titleText}>{title}</Text>
+          <Animated.View style={animatedContentStyle}>
+            {/* Apply animated content style */}
+            <Text
+              style={styles.content}
+              numberOfLines={isExpanded ? undefined : 8}
+              ellipsizeMode="tail"
+            >
+              {content}
+            </Text>
+          </Animated.View>
+        </View>
+        <Divider />
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginTop: 12,
+            paddingHorizontal: 8,
+          }}
+        >
+          <Text style={{ fontSize: 12, color: '#888' }}>
+            {new Date().toLocaleDateString()}
+          </Text>
+          <Ionicons name="ellipsis-horizontal" size={16} color="#888" />
+        </View>
+      </Animated.View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  title: {
+  titleText: {
     fontWeight: 'bold',
     fontSize: 18,
     marginBottom: 4,

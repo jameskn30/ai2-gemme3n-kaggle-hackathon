@@ -8,7 +8,7 @@ type HeaderButtonItemProps = {
   subTitle: string;
   icon: React.ReactNode;
 };
-const HeaderButtonItem = ({ title, subTitle,icon }: HeaderButtonItemProps) => {
+const HeaderButtonItem = ({ title, subTitle, icon }: HeaderButtonItemProps) => {
   return (
     <View style={styles.buttonItem}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
@@ -54,12 +54,36 @@ const Header: React.FC = () => {
         </View>
       </View>
       {/* button groups here */}
-      <View style={{ flexDirection: 'row', marginTop: 12 }}>
-        <HeaderButtonItem title="6" subTitle="Entries this year" icon={<Ionicons name="albums" size={20} color="#3182ce" />} />
-        <HeaderButtonItem title="18" subTitle="Emotions" icon={<Ionicons name="heart" size={20} color="#e53e3e" />} />
-        <HeaderButtonItem title="3" subTitle="Journal Streak" icon={<Ionicons name="calendar" size={20} color="#805ad5" />} />
-        <HeaderButtonItem title="12" subTitle="Days Journaled" icon={<Ionicons name="calendar" size={20} color="#38a169" />} />
-      </View>
+      <TouchableOpacity
+        onPress={() => {
+          router.push('/(screens)/statistics');
+        }}
+        style={{
+          flexDirection: 'row',
+          marginTop: 12,
+        }}
+      >
+        <HeaderButtonItem
+          title="6"
+          subTitle="Entries this year"
+          icon={<Ionicons name="albums" size={20} color="#3182ce" />}
+        />
+        <HeaderButtonItem
+          title="18"
+          subTitle="Emotions"
+          icon={<Ionicons name="heart" size={20} color="#e53e3e" />}
+        />
+        <HeaderButtonItem
+          title="3"
+          subTitle="Journal Streak"
+          icon={<Ionicons name="calendar" size={20} color="#805ad5" />}
+        />
+        <HeaderButtonItem
+          title="12"
+          subTitle="Days Journaled"
+          icon={<Ionicons name="calendar" size={20} color="#38a169" />}
+        />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -85,7 +109,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    gap: 3
+    gap: 3,
   },
   buttonHeaderText: {
     fontSize: 16,
