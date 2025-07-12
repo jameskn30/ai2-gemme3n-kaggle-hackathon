@@ -62,3 +62,8 @@ fastlane/test_output
 
 # Bundle artifacts
 *.jsbundle
+
+
+# Jupyter Notebook
+.ipynb_checkpoints
+**/logs
