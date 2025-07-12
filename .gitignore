@@ -1,0 +1,64 @@
+# React Native
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+.expo/
+.expo-shared/
+dist/
+build/
+android/app/build/
+ios/build/
+ios/Pods/
+*.keystore
+*.jks
+
+# Expo
+web-build/
+.expo/
+.expo-shared/
+
+# Misc
+.env
+**/.venv
+.env.*
+*.log
+*.lock
+*.tmp
+*.swp
+*.swo
+.DS_Store
+.idea/
+.vscode/
+coverage/
+*.iml
+
+# macOS
+*.DS_Store
+
+# Xcode
+*.xcworkspace
+*.xcuserstate
+*.xcuserdata
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/xcshareddata/WorkspaceSettings.xcsettings
+
+# Android Studio
+*.iml
+.gradle/
+local.properties
+.cxx/
+*.apk
+*.ap_
+output.json
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Bundle artifacts
+*.jsbundle

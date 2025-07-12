@@ -11,31 +11,31 @@ ai-insights-poc/
 ├── docker-compose.yml
 │
 ├── datasets/
-│   ├── raw/
-│   ├── processed/
-│   └── outputs/
+│ ├── raw/
+│ ├── processed/
+│ └── outputs/
 │
 ├── datascience/
-│   ├── notebooks/
-│   ├── scripts/
-│   └── models/
+│ ├── notebooks/
+│ ├── scripts/
+│ └── models/
 │
 ├── src/
-│   ├── backend/
-│   │   ├── src/
-│   │   ├── unittests/
-│   │
-│   └── webapp/
-│       ├── src/
-│       ├── unittests/
+│ ├── backend/
+│ │ ├── src/
+│ │ ├── unittests/
+│ │
+│ └── webapp/
+│ ├── src/
+│ ├── unittests/
 │
 ├── tests/
-│   └── integration/
+│ └── integration/
 │
 ├── scripts/
-│   ├── setup/
-│   ├── deployment/
-│   └── data-pipeline/
+│ ├── setup/
+│ ├── deployment/
+│ └── data-pipeline/
 │
 ├── docs/
 │
