@@ -65,7 +65,7 @@ const Header: React.FC = () => {
       >
         <HeaderButtonItem
           title="6"
-          subTitle="Entries this year"
+          subTitle="Entries"
           icon={<Ionicons name="albums" size={20} color="#3182ce" />}
         />
         <HeaderButtonItem
@@ -75,7 +75,7 @@ const Header: React.FC = () => {
         />
         <HeaderButtonItem
           title="3"
-          subTitle="Journal Streak"
+          subTitle="Days Streak"
           icon={<Ionicons name="calendar" size={20} color="#805ad5" />}
         />
         <HeaderButtonItem
