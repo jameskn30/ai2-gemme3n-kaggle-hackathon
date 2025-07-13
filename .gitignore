@@ -67,6 +67,3 @@ fastlane/test_output
 # Jupyter Notebook
 .ipynb_checkpoints
 **/logs
-
-# Ignore browser-use repo
-**/browser-use
