@@ -1,0 +1,1 @@
+pip3 install torch torchvision torchaudio huggingface numpy matplotlib seaborn pandas transformers
