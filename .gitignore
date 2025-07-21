@@ -67,3 +67,7 @@ fastlane/test_output
 # Jupyter Notebook
 .ipynb_checkpoints
 **/logs
+
+# Ignore all outputs
+**/output
+**/outputs

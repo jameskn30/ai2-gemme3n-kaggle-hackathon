@@ -1,0 +1,40 @@
+{
+  "os":  "Linux-6.14.0-24-generic-x86_64-with-glibc2.39",
+  "python":  "CPython 3.11.7",
+  "startedAt":  "2025-07-19T13:56:13.249102Z",
+  "program":  "/home/nguyen/Desktop/ai2-gemme3n-kaggle-hackathon/datascience/tutorial/huggingface/GRPO/rl.ipynb",
+  "codePath":  "datascience/tutorial/huggingface/GRPO/rl.ipynb",
+  "codePathLocal":  "rl.ipynb",
+  "git":  {
+    "remote":  "git@github.com:jameskn30/ai2-gemme3n-kaggle-hackathon.git",
+    "commit":  "a89299c611d2bee779b526dacc19e4dfab490afe"
+  },
+  "email":  "jknguyen3010@gmail.com",
+  "root":  "/home/nguyen/Desktop/ai2-gemme3n-kaggle-hackathon/datascience/tutorial/huggingface/GRPO",
+  "host":  "linux",
+  "executable":  "/home/nguyen/Desktop/ai2-gemme3n-kaggle-hackathon/.venv/bin/python",
+  "cpu_count":  12,
+  "cpu_count_logical":  20,
+  "gpu":  "NVIDIA GeForce RTX 3060",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "982240026624",
+      "used":  "619129593856"
+    }
+  },
+  "memory":  {
+    "total":  "33487589376"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 3060",
+      "memoryTotal":  "12884901888",
+      "cudaCores":  3584,
+      "architecture":  "Ampere",
+      "uuid":  "GPU-18887681-b1e4-d6ef-fb2c-94949bf82b58"
+    }
+  ],
+  "cudaVersion":  "12.9",
+  "writerId":  "u5mv8ffdsa2hzr613v6o7azsvpcljeia"
+}

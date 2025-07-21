@@ -1,0 +1,33 @@
+# ML Environment Requirements
+# Created with uv for PyTorch + Transformers + TRL
+
+# Core PyTorch with CUDA support
+torch
+torchvision
+torchaudio
+
+# Jupyter and IPython
+ipykernel
+ipython
+
+# Data Science and Visualization
+matplotlib
+seaborn
+pandas
+scikit-learn
+numpy
+
+# Hugging Face Ecosystem
+transformers
+trl
+datasets
+accelerate
+huggingface-hub
+tokenizers
+safetensors
+
+# Additional dependencies
+tqdm
+requests
+pyyaml
+regex
