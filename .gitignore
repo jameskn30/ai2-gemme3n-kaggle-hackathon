@@ -72,3 +72,6 @@ fastlane/test_output
 **/output
 **/outputs
 **/outputsunsloth_compiled_cache/
+
+# Ignore unsloth complied cache
+**/unsloth_compiled_cache

@@ -228,10 +228,5 @@ text = tokenizer.apply_chat_template(
 
 pprint(text)
 
-
-
-
-
-
 ### REPEAT UNTIL SCORE IMPROVES ON BENCHMARK
 
