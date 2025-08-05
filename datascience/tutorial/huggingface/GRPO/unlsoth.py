@@ -16,6 +16,8 @@ if torch.cuda.is_available():
 else:
     print("No GPU detected.")
 
+TRAIN = False 
+
 # Environment variables for torch
 os.environ["TORCH_LOGS"] = "recompiles"
 os.environ['TORCHDYNAMO_CACHE_SIZE_LIMIT'] = '999999999'
@@ -27,7 +29,6 @@ wandb.login()
 
 # DATASET
 dataset = load_dataset("openai/gsm8k", "main")['train']
-print(dataset)
 
 # prompts constant to build dataset
 
@@ -173,42 +174,44 @@ model = FastLanguageModel.get_peft_model(
 LR = 5e-6
 MAX_PROMPT_LENGTH = 256
 
-# grpo_config = GRPOConfig(
-#     learning_rate=LR,
-#     adam_beta1 = 0.9,
-#     adam_beta2=0.99,
-#     weight_decay=0.1,
-#     warmup_ratio=0.1,
-#     lr_scheduler_type='cosine',
-#     optim="paged_adamw_8bit",
-#     logging_steps=1,
-#     per_device_train_batch_size=1,
-#     gradient_accumulation_steps= 1,
-#     num_generations=8, # generate 8 samples
-#     max_prompt_length=MAX_PROMPT_LENGTH,
-#     max_completion_length = MAX_SEQ_LENGTH - MAX_PROMPT_LENGTH,
-#     max_steps = 250,
-#     save_steps = 250,
-#     max_grad_norm = 0.1,
-#     report_to = 'wandb',
-#     output_dir = 'outputs'
-# )
+if TRAIN:
 
-# trainer = GRPOTrainer(
-#     model = model,
-#     reward_funcs = [
-#         integer_reward_func, 
-#         strict_format_reward_func,
-#         soft_format_reward_func,
-#         xml_count_reward_func,
-#         correct_reward_func, 
-#     ],
-#     processing_class = tokenizer,
-#     args = grpo_config,
-#     train_dataset = gsm8k
-# )
+    grpo_config = GRPOConfig(
+        learning_rate=LR,
+        adam_beta1 = 0.9,
+        adam_beta2=0.99,
+        weight_decay=0.1,
+        warmup_ratio=0.1,
+        lr_scheduler_type='cosine',
+        optim="paged_adamw_8bit",
+        logging_steps=1,
+        per_device_train_batch_size=1,
+        gradient_accumulation_steps= 1,
+        num_generations=8, # generate 8 samples
+        max_prompt_length=MAX_PROMPT_LENGTH,
+        max_completion_length = MAX_SEQ_LENGTH - MAX_PROMPT_LENGTH,
+        max_steps = 250,
+        save_steps = 250,
+        max_grad_norm = 0.1,
+        report_to = 'wandb',
+        output_dir = 'outputs'
+    )
 
-# trainer.train()
+    trainer = GRPOTrainer(
+        model = model,
+        reward_funcs = [
+            integer_reward_func, 
+            strict_format_reward_func,
+            soft_format_reward_func,
+            xml_count_reward_func,
+            correct_reward_func, 
+        ],
+        processing_class = tokenizer,
+        args = grpo_config,
+        train_dataset = gsm8k
+    )
+
+    trainer.train()
 
 
 ### EVALUATION
